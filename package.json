@@ -7,7 +7,15 @@
     "docs:build": "vuepress build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ManUtopiK/doc_silkaj.git"
+  },
   "keywords": [],
   "author": "Emmanuel Salomon <emmanuel.salomon@gmail.com> (https://github.com/ManUtopiK)",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/ManUtopiK/doc_silkaj#readme",
+  "dependencies": {
+      "vuepress": "^1.2.0"
+  }
 }
