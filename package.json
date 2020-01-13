@@ -4,7 +4,7 @@
   "description": "Technical documentation for Silkaj, CLI for Duniter.",
   "main": "index.js",
   "scripts": {
-    "docs:build": "vuepress build",
+    "docs:build": "cd docs && vuepress build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
