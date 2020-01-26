@@ -4,8 +4,8 @@
   "description": "Technical documentation for Silkaj, CLI for Duniter.",
   "main": "index.js",
   "scripts": {
-    "docs:build": "cd docs && vuepress build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,8 @@
   "license": "MIT",
   "homepage": "https://github.com/ManUtopiK/doc_silkaj#readme",
   "dependencies": {
-      "vuepress": "^1.2.0"
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-code-copy": "^1.0.4",
+    "vuepress-theme-yuu": "^2.2.1"
   }
 }

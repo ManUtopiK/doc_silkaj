@@ -1,4 +1,9 @@
 module.exports = {
+  theme: 'yuu',
+  plugins: [['vuepress-plugin-code-copy', {
+    color: '#3eaf7c',
+    backgroundColor: '#3eaf7c'
+  }]],
   locales: {
     '/': {
       lang: 'English',
@@ -12,6 +17,10 @@ module.exports = {
     }
   },
   themeConfig: {
+    yuu: {
+      defaultDarkTheme: true,
+      disableThemeIgnore: true
+		},
     smoothScroll: true,
     locales: {
       '/': {
