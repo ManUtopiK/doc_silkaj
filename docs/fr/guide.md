@@ -39,8 +39,9 @@ silkaj -h
 Vous pouvez générer un fichier d'authentification à partir de votre identifiant secret et mot de passe.
 En utilisant un fichier d'authentification, vous pourrez alors effectuer des opérations **sans devoir vous authentifier à chaque fois**.
 
-<span style="color: red;">**Ce fichier est très sensible !**</span><br>
-Il permet de vous authentifier ; ne mettez pas ce fichier au milieu de votre bureau ! Gardez-le en lieu sûr ou supprimez-le après utilisation...
+:::warning <span style="color: red;">Ce fichier est très sensible !</span><br>
+:warning: Il permet de vous authentifier ; ne mettez pas ce fichier n'importe où ! Gardez-le en lieu sûr ou supprimez-le après utilisation...
+:::
 
 ### Générer un fichier d'authentification
 ```bash

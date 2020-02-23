@@ -39,8 +39,9 @@ silkaj -h
 You can generate auth file with your identifier and password.
 When using this auth file, you can perform operations **without be prompted each time**.
 
-<span style="color: red;">**This file is dangerous !**</span><br>
-This is the authentification file of your account ; don't put this file everywhere in your computer! Keep-it safe or delete it after using...
+:::warning <span style="color: red;">This file is unsecure!</span><br>
+:warning: This is the authentification file of your account ; don't put this file everywhere in your computer! Keep-it safe or delete it after using...
+:::
 
 ### Generate auth file
 ```bash
