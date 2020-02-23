@@ -1,5 +1,6 @@
 # node modules
 node_modules
+pnpm-lock.yaml
 
 # MacOS desktop services store
 .DS_Store
