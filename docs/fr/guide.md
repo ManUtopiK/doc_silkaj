@@ -76,6 +76,12 @@ silkaj -p g1.presles.fr:443 info
 
 ## Comptes et transactions
 
+### Obtenir la clé d'un compte
+```bash
+silkaj id moul
+```
+![id](../images/id.png#result)
+
 ### Consulter le solde d'un portefeuille
 ```bash
 silkaj balance 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8

@@ -76,6 +76,12 @@ silkaj -p g1.presles.fr:443 info
 
 ## Accounts and transactions
 
+### Get key of account
+```bash
+silkaj id moul
+```
+![id](./images/id.png#result)
+
 ### Wallet balance
 ```bash
 silkaj balance 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8
