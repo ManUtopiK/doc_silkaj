@@ -14,7 +14,10 @@ cd silkaj_doc/docs
 vuepress dev
 # Go to http://localhost:8080/ and edit markdown file. Automatic hot-reload, compiling, linting and webpack...
 
-# build
+# Build
 vuepress build
 # Deploy build in .vuepress/dist to any static hosting.
 ```
+All images are build with [https://carbon.now.sh](). You can use the same design with `carbon-config.json` file.
+
+In carbon app, choose "Presets > Misc > Import config".
