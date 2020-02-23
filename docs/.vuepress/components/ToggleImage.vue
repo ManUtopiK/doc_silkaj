@@ -1,30 +1,39 @@
 <template>
   <a class="toggleImages" @click="toggleImages">
-    {{ hideImages ? 'Afficher les images' : 'Masquer les images' }}
+    {{ imageState ? showImages : hideImages }}
   </a>
 </template>
 
 <script>
 export default {
+  name: 'ToggleImage',
   data() {
     return {
-      hideImages: false
+      imageState: false
     }
+  },
+  computed: {
+    showImages() {
+      return this.$lang === 'English' ? 'Show images' : 'Afficher les images'
+    },
+    hideImages() {
+      return this.$lang === 'English' ? 'Hide images' : 'Masquer les images'
+    },
   },
   mounted() {
     // localStorage return a String. !!JSON.parse convert it to Boolean.
-    this.hideImages = !!JSON.parse(localStorage.getItem('hide-images'))
+    this.imageState = !!JSON.parse(localStorage.getItem('hide-images'))
   },
   watch: {
-    hideImages() {
+    imageState() {
       if (this.isLocalStorage())
-        localStorage.setItem('hide-images', this.hideImages)
+        localStorage.setItem('hide-images', this.imageState)
       this.$parent.$el.classList.toggle('hide-images')
     }
   },
   methods: {
     toggleImages() {
-      this.hideImages = !this.hideImages
+      this.imageState = !this.imageState
     },
     isLocalStorage(){
       var test = 'test';
