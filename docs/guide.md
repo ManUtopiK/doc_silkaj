@@ -31,7 +31,6 @@ silkaj --help
 # or
 silkaj -h
 ```
-![help](./images/help.png#result)
 
 ---
 
@@ -44,19 +43,23 @@ When using this auth file, you can perform operations **without be prompted each
 :::
 
 ### Generate auth file
+Create `authfile` in your current directory:
 ```bash
-# Create `authfile` in your current directory
 silkaj authfile
-# Create file with directory and name
+```
+Create file with directory and name:
+```bash
 silkaj authfile --file /path/to/custom-authfile
 ```
 ![authfile](./images/authfile.png#result)
+
 ### How to operate with `authfile`
+Example of transaction, this command is executed in repertory which contains the `authfile`:
 ```bash
-# Example of transaction
-# This command is executed in repertory which contains the `authfile`
 silkaj --auth-file tx --amount XX --output XXX --comment "tx with authfile"
-# Specifiy path file (-af = --auth-file)
+```
+Example, specifiing path file (-af = --auth-file):
+```bash
 silkaj -af --file /path/to/custom-authfile tx --amount XX --output XXX --comment "tx with authfile"
 ```
 
@@ -99,24 +102,56 @@ silkaj history 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8
 ```bash
 silkaj history 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8 -u
 ```
+![id](./images/history-u.png#result)
 
 ### Send transaction
 ```bash
 silkaj tx --amount XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Thanks for Silkaj"
-# You will be prompted to confirm sending transaction
 ```
+:::tip Info
+You will be prompted to confirm sending transaction
+:::
 ![tx-confirm](./images/tx-confirm.png#result)
 
 #### Transaction in DU without confirmation (-y)
 ```bash
 silkaj tx -y --amountUD XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Thanks for Silkaj"
-# Be careful, you will NOT be prompted!
 ```
+:::danger Attention
+Be careful, you will NOT be prompted! This command is useful for automated transactions in program.
+:::
 ![tx-success](./images/tx-success.png#result)
 
 #### Transaction with `authfile`
 ```bash
 silkaj -af tx --amount XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Thanks for Silkaj"
+```
+
+#### Transaction to many accounts
+Accounts should be separated by `:`
+```bash
+silkaj tx --amount 10 --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP:78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8
+```
+
+### Automate transactions
+Create a `recipients.txt` file containing the list of the recipients keys:
+```bash
+2ny7YAdmzReQxAayyJZsyVYwYhVyax2thKcGknmQy5nQ
+FEkbc4BfJukSWnCU6Hed6dgwwTuPFTVdgz5LpL4iHr9J
+D9D2zaJoWYWveii1JRYLVK3J4Z7ZH3QczoKrnQeiM6mx
+...
+```
+To process automated transactions, Silkaj needs to have an authentication file allowing to spent money (`--auth-file`).
+To send 20DU to all accounts, just run the following command:
+```bash
+silkaj --auth-file tx --yes --amountUD 20 --output `cat recipients.txt | tr '\n' ':' | sed -e 's/:*$//'`
+```
+:::tip Info
+The `--yes` option won’t prompt a confirmation.
+:::
+You could automate transaction with a `crontab` on your machine. Example:
+```bash
+0 0 1 * * silkaj --auth-file tx --yes --amountUD 20 --output `cat recipients.txt | tr '\n' ':' | sed -e 's/:*$//'`
 ```
 
 ---
@@ -132,8 +167,10 @@ silkaj info
 ### Open currency license in your default browser
 ```bash
 silkaj license
-# You will be prompted for language
 ```
+:::tip Info
+You will be prompted for language
+:::
 
 ### Display the current Proof of Work difficulty level to generate the next block
 ```bash

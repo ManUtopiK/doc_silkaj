@@ -31,7 +31,6 @@ silkaj --help
 # ou
 silkaj -h
 ```
-![help](../images/help.png#result)
 
 ---
 
@@ -44,19 +43,23 @@ En utilisant un fichier d'authentification, vous pourrez alors effectuer des op�
 :::
 
 ### Générer un fichier d'authentification
+Créer un fichier `authfile` dans le répertoire courant :
 ```bash
-# Créé un fichier `authfile` dans le répertoire courant
 silkaj authfile
-# Spécifier le nom du fichier et le répertoire
+```
+Spécifier le nom du fichier et le répertoire :
+```bash
 silkaj authfile --file /path/to/custom-authfile
 ```
 ![authfile](../images/authfile.png#result)
+
 ### Effectuer une opération avec le fichier d'authentification
+Exemple de transaction, la commande est exécutée dans le répertoire contenant le fichier `authfile` :
 ```bash
-# Exemple de transaction
-# La commande est exécutée dans le répertoire contenant le fichier `authfile`
 silkaj --auth-file tx --amount XX --output XXX --comment "Transaction avec authfile"
-# En spécifiant le chemin du fichier d'authentification (-af = --auth-file)
+```
+Exemple, en spécifiant le chemin du fichier d'authentification (-af = --auth-file):
+```bash
 silkaj -af --file /path/to/custom-authfile tx --amount XX --output XXX --comment "Transaction avec authfile"
 ```
 
@@ -99,24 +102,56 @@ silkaj history 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8
 ```bash
 silkaj history 78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8 -u
 ```
+![id](../images/history-u.png#result)
 
 ### Effectuer une transaction
 ```bash
 silkaj tx --amount XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Merci pour Silkaj"
-# Vous devrez confirmer la transaction
 ```
+:::tip Info
+Vous devrez confirmer la transaction
+:::
 ![tx-confirm](../images/tx-confirm.png#result)
 
 #### Transaction en DU sans confirmation (-y)
 ```bash
 silkaj tx -y --amountUD XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Merci pour Silkaj"
-# Attention, vous n'aurez pas à confirmer la transaction !
 ```
+:::danger Attention
+Il n'y aura pas à confirmer la transaction ! Cette commande est utile pour des transactions automatisées dans un programme.
+:::
 ![tx-success](../images/tx-success.png#result)
 
 #### Transaction avec `authfile`
 ```bash
 silkaj -af tx --amount XX --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP --comment "Merci pour Silkaj"
+```
+
+#### Transaction vers plusieurs comptes
+Les comptes doivent être séparés par `:`
+```bash
+silkaj tx --amount 10 --output GfKERHnJTYzKhKUma5h1uWhetbA8yHKymhVH2raf2aCP:78ZwwgpgdH5uLZLbThUQH7LKwPgjMunYfLiCfUCySkM8
+```
+
+### Automatiser les transactions
+Créez un fichier `recipients.txt` avec la liste des clés publiques :
+```bash
+2ny7YAdmzReQxAayyJZsyVYwYhVyax2thKcGknmQy5nQ
+FEkbc4BfJukSWnCU6Hed6dgwwTuPFTVdgz5LpL4iHr9J
+D9D2zaJoWYWveii1JRYLVK3J4Z7ZH3QczoKrnQeiM6mx
+...
+```
+Vous devez vous authentifier avec un fichier d'authentification (`--auth-file`).
+Lancez la commande suivante pour envoyer 20 DU à tous les comptes :
+```bash
+silkaj --auth-file tx --yes --amountUD 20 --output `cat recipients.txt | tr '\n' ':' | sed -e 's/:*$//'`
+```
+:::tip Info
+L'option `--yes` permet d'omettre la confirmation.
+:::
+Vous pouvez automatiser la transaction avec un `crontab` configuré sur votre machine. Exemple :
+```bash
+0 0 1 * * silkaj --auth-file tx --yes --amountUD 20 --output `cat recipients.txt | tr '\n' ':' | sed -e 's/:*$//'`
 ```
 
 ---
@@ -129,11 +164,13 @@ silkaj info
 ```
 ![info](../images/info.png#result)
 
-### Ouvrir la license dans votre navigateur par défaut
+### Ouvrir la licence dans votre navigateur par défaut
 ```bash
 silkaj license
-# You will be prompted for language
 ```
+:::tip Info
+Vous pourrez choisir le langage de la licence
+:::
 
 ### Afficher le niveau de difficulté de preuve de travail requis pour générer le prochain bloc
 ```bash
