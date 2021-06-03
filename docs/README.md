@@ -18,7 +18,7 @@ pageClass: home
 
 ## Quick start
 
-Silkaz is written with [Python3](https://www.python.org/).
+Silkaj is written with [Python3](https://www.python.org/).
 ```bash
 # Install from Debian Buster or Ubuntu 19.04
 sudo apt install silkaj
